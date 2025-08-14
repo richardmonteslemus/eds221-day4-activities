@@ -1,0 +1,135 @@
+---
+title: "Loops and Functions"
+author: "Richard Montes Lemus"
+format: html
+---
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+# task 1
+weekdays <- c("Monday", "Tuesday", "Wednesday", "Thusday", "Friday", "Saturday", "Sunday")
+
+transects <- c("Transect A", "Transect B", "Transect C")
+
+```
+
+```{r}
+for (i in seq_along(transects)) {
+  print(transects[i])
+}
+
+```
+
+```{r}
+for (j in seq_along(weekdays)) {
+  print(weekdays[j])
+}
+```
+```{r}
+print(paste0(weekdays[j], "-", transects[i]))
+```
+
+
+```{r}
+out_matrix <- matrix(nrow = length(weekdays), ncol = length(transects))
+
+for (i in seq_along(transects)) {
+  for (j in seq_along(weekdays)) {
+  day_sect <- print(paste0(weekdays[j], "-", transects[i]))
+  out_matrix[j,i] <- day_sect
+}
+}
+
+```
+ˆ
+```{r}
+# task 2
+force <- function(m, a){
+  f <- m*a
+  print(paste("The resulting force is", f))
+}
+
+# testing out function
+force(3,3)
+```
+
+```{r}
+# task 3 
+# Create table of fish parameters 
+sci_names <- c("Chanos chanos", "Sphyraena barracuda", "Caranx ignobilis" )
+
+common_name <- c("Milkfish", "Great barracuda", "Giant trevally")
+
+a_est <- c(0.0905, 0.0181, 0.0353)
+
+b_est <- c(2.52, 3.27, 3.05)
+
+fish_parms <- data.frame(sci_names, common_name, a_est, b_est)
+```
+
+```{r}
+# Write function for finding fish weight 
+
+fish_weight <- function(fish_name, tot_length){
+  
+}
+```
+
+```{r}
+
+fish_weight <- function(fish_name, tot_length){
+  fil_fish_parm <- fish_parms %>% 
+    filter(common_name == fish_name)
+
+  a <- fil_fish_parm[["a_est"]]
+
+  b <- fil_fish_parm[["b_est"]]
+
+  w = a*tot_length^b
+    return(w)
+}
+
+fish_w_answer <- fish_weight("Milkfish", 3)
+fish_w_answer
+```
+
+
+
+```{r}
+length_vec <- seq(from = 0, to = 100, by = 1)
+
+milkfish_weight <- fish_weight("Milkfish", length_vec)
+milkfish_weight
+```
+
+```{r}
+# task 4
+wave_power <- function(h, t){
+  p_deep <- 0.5 * h^2 * t
+}
+
+height_vec <- seq(from = 0, to = 3, by = 0.2)
+
+wave_power_calc <- wave_power(height_vec, 8)
+wave_power_calc
+```
+
+```{r}
+# task 5
+wave_power <- function(h, t, d) {
+  if (d >= 12) {
+  print(p_deep <- 0.5 * h^2 * t)
+  message("Deep")
+  } else { print(p_shallow <- 0.81 * h^2 *t)
+    message("Shallow") }
+}
+
+wave_power(4, 5, 13)
+wave_power(4, 5, 2)
+
+```
+
+
